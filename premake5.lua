@@ -11,6 +11,15 @@ workspace "Tracer"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Tracer/vendor/GLFW/include"
+
+group "Dependencies"
+    include "Tracer/vendor/GLFW"
+
+group ""
+
 project "Tracer"
 	location "Tracer"
 	kind "SharedLib"
@@ -31,11 +40,14 @@ project "Tracer"
 
 	includedirs
 	{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+        "%{IncludeDir.GLFW}"
+
 	}
 
 	links
 	{
+        "GLFW"
 	}
 
     filter "system:windows"
@@ -54,17 +66,17 @@ project "Tracer"
     }
 
 filter "configurations:Debug"
-    defines "DW_DEBUG"
+    defines "TC_DEBUG"
     runtime "Debug"
     symbols "On"
 
 filter "configurations:Release"
-    defines "DW_RELEASE"
+    defines "TC_RELEASE"
     runtime "Release"
     optimize "On"
 
 filter "configurations:Dist"
-    defines "DW_DIST"
+    defines "TC_DIST"
     runtime "Release"
     optimize "On"
 

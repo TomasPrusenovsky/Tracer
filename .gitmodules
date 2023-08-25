@@ -1,0 +1,4 @@
+[submodule "Tracer/vendor/GLFW"]
+	path = Tracer/vendor/GLFW
+	url = https://github.com/TomasPrusenovsky/glfw.git
+	branch = latest

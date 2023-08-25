@@ -1,4 +1,6 @@
 #pragma once
+#include "Core/WindowTemplate.h"
+#include "tcpch.h"
 
 namespace Tracer
 {
@@ -9,6 +11,9 @@ namespace Tracer
 		~Application();
 
 		void Run();
+
+	private:
+		std::unique_ptr<WindowTemplate> m_Window;
 	};
 }
 

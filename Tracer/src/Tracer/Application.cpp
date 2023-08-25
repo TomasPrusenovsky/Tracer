@@ -1,9 +1,11 @@
 #include "tcpch.h"
 #include "Application.h"
+#include "Core/Window.h"
 
 namespace Tracer
 {
-	Application::Application()
+	Application::Application() :
+		m_Window(std::unique_ptr<WindowTemplate>(new Window()))
 	{
 
 	}
@@ -17,7 +19,7 @@ namespace Tracer
 	{
 		while (true)
 		{
-
+			m_Window->OnUpdate();
 		}
 	}
 }
